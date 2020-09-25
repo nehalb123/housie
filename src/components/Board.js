@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
-import { b } from './properties'
+import React, { useState, useEffect } from 'react';
+import { b } from './properties';
+import Odometer from 'react-odometerjs';
+import 'odometer/themes/odometer-theme-slot-machine.css'
+
 const Board = () => {
     const [board, setBoard] = useState(b);
     const [seenNumbers, setSeenNumber] = useState([]);
+    const [odometerValue, setOdometerValue] = useState(0);
+
+    useEffect(() => {
+        setOdometerValue(seenNumbers[seenNumbers.length - 1]);
+    }, [seenNumbers])
 
     const generateNumber = () => {
         if (seenNumbers.length == 90) {
@@ -27,8 +35,12 @@ const Board = () => {
         <div className="container">
             <div className="generator-container">
                 <input type="button" value="Generate" onClick={() => generateNumber()} />
-                <br />
-                <div className="number"> {seenNumbers[seenNumbers.length - 1]}</div>
+                <br/>
+                <Odometer 
+                    format="d"
+                    duration={ 500 }
+                    value={ odometerValue }
+                />
             </div>
             <div className="board">
                 {board.map((element, index) => <div className={`square ${seenNumbers.includes(index + 1) ? 'generated' : ''}`}>{element}</div>)}
