@@ -56,3 +56,46 @@ body {
   border-radius: 10px;
   border: 1px solid #EEE;
 }
+
+.ticket {
+  position: relative;
+  box-sizing: border-box;
+  width: 470px;
+  height: 240px;
+  margin: 150px auto 0;
+  padding: 20px;
+  border-radius: 10px;
+  background: lightyellow;
+  box-shadow: 2px 2px 15px 0px #ab9b0d;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.eachNum {
+  width: 3rem;
+  height: 3rem;
+  margin: 2px;
+  border: 1px solid #CCC;
+  display: inline-block;
+  font-size: 16px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.ticket:before, .ticket:after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  height: 6px;
+  width: 460px;  /* dependent on .ticket width (ticket width -10px)*/
+  
+}
+.ticket:before {
+  top: -5px;
+  background: radial-gradient(circle, transparent, transparent 50%, lightyellow 50%, lightyellow 100%) -7px -8px / 16px 16px repeat-x;
+}
+.ticket:after {
+  bottom: -5px;
+  background: radial-gradient(circle, transparent, transparent 50%, lightyellow 50%, lightyellow 100%) -7px -2px / 16px 16px repeat-x;
+}
+
